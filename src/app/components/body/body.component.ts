@@ -51,7 +51,8 @@ export class BodyComponent implements OnInit {
         this.data = this.data.map((obj: any) => ({ ...obj, 'status': 'Not Started' }));
         this.data = this.data.map((obj: any) => ({ ...obj, 'resCode': '0' }));
         this.data = this.data.map((obj: any) => ({ ...obj, 'actionTaken': 'false' }));
-        this.displayedColumns = ['SrNo', 'RCA_TimeStamp', 'Number', 'RCA_Group', 'Status'];
+        this.data = this.data.map((obj: any) => ({ ...obj, 'shortMessage': '' }));
+        this.displayedColumns = ['SrNo', 'RCA_TimeStamp', 'Number', 'Description', 'RCA_Group', 'Status'];
         for (let i = 0; i < this.data.length; i++) {
           var found = this.incidentDetails.filter((o) => o.Number == this.data[i].Number);
           // console.log(found);
@@ -110,7 +111,7 @@ export class BodyComponent implements OnInit {
       if (data.status_code == 200) {
         this.incidentDetails = this.incidentDetails.map((obj: any) => {
           if (obj.Number == incidentNumber) {
-            return { ...obj, 'status': 'Completed', 'resCode': data.status_code, 'restext': data.restext, 'actionTaken': 'true', 'User Email': 'maddixit@deloitte.com', 'Notified': 'Yes', 'Notification Time': new Date() };
+            return { ...obj, 'status': 'Completed', 'resCode': data.status_code, 'restext': data.restext, 'actionTaken': 'true', 'User Email': 'maddixit@deloitte.com', 'Notified': 'Yes', 'Notification Time': new Date(), 'shortMessage': data.shortMessage };
           }
           return obj;
         });

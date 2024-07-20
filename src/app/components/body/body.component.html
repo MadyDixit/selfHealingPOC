@@ -7,7 +7,7 @@
     </div>
   </div>
   <div style="display: flex; justify-content: center;max-height: 80%;" *ngIf="flag">
-    <div style=" width: 60%; height: 100%; margin-top: 5%;">
+    <div style=" width: 80%; height: 100%; margin-top: 5%;">
 
       <table mat-table [dataSource]="dataSources" class="mat-elevation-z8 demo-table">
         <!-- Position Column -->
@@ -29,6 +29,11 @@
             {{element["Number"]}}</td>
         </ng-container>
 
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="Description">
+          <th class="textcenter" mat-header-cell *matHeaderCellDef>Description</th>
+          <td class="textcenter" mat-cell *matCellDef="let element">{{element["Description"]}}</td>
+        </ng-container>
         <!-- Symbol Column -->
         <ng-container matColumnDef="RCA_Group">
           <th class="textcenter" mat-header-cell *matHeaderCellDef>Category</th>
@@ -55,8 +60,7 @@
               </span>
             </div>
             <div *ngIf="element.status == 'Completed'">
-              <p *ngIf="element.resCode == '200'" style="color: rgb(3, 216, 3);">Request Completed Successfully </p>
-              <span *ngIf="element.resCode != '200'" style="color: rgb(255, 174, 0);">Request Partially Completed</span>
+              <p *ngIf="element.resCode == '200'" style="color: rgb(3, 216, 3);">{{element["shortMessage"]}}</p>
             </div>
           </td>
           <!-- <td mat-cell *matCellDef="let element"><button mat-button (click)="operation(element.Number)">Take Action</button></td> -->

@@ -29,14 +29,15 @@ export class OperationService {
         'Content-Type': 'application/json'
       });
       const res: Observable<any> = this.http.post(this.adfOperationTrigger, data, { headers })
-      return res.pipe(catchError(this.handleError));;
+      console.log(res);
+      return res.pipe(catchError(this.handleError));
     } else if (incidentDetais[0]["RCA_Group"] == 'ADF Operation' && incidentDetais[0]["Description"].includes('self-healing-poc')) {
       const data = ''
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
       const res: Observable<any> = this.http.post(this.adfOperationPipelineRun, data, { headers })
-      return res.pipe(catchError(this.handleError));;
+      return res.pipe(catchError(this.handleError));
     } {
       return new Observable(observer => observer.next(0));
     }
