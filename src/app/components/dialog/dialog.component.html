@@ -1,0 +1,51 @@
+<mat-tab-group >
+    <mat-tab label="Incident Details"> 
+      <!-- <div *ngFor="let key of data | keyvalue" class="incidentDetails">
+        <p style="color: white;">{{key.key}} -> {{key.value}}</p> -->
+        <div class="container" *ngFor="let keyValuePair of data | keyvalue">
+          <ng-container *ngIf="mapToSearchIncident(keyValuePair.key)">
+            <div class="item-1">{{ keyValuePair.key }}</div>
+            <div class="item-2">{{ keyValuePair.value }}</div>
+          </ng-container>
+        </div>        
+      <!-- </div> -->
+    </mat-tab>  
+    <mat-tab label="Middleware Details"> 
+      <div class="under-development-container">
+        <h1>Under Development</h1>
+        <p>This page is currently under development.</p>
+        <p>Please check back later.</p>
+      </div>      
+    </mat-tab>
+    <mat-tab label="Activity Details"> 
+      <div class="under-development-container" *ngIf = 'data.actionTaken == "false"'>
+        <h1>No Activity Found.</h1>
+        <p>Please perform Activity and check back.</p>
+      </div>  
+      <ng-container *ngIf = 'data.actionTaken == "true"' >
+        <div class="container" *ngFor="let keyValuePair of data | keyvalue" >
+          <ng-container *ngIf="mapToSearchActivity(keyValuePair.key)">
+            <div class="item-1">
+              <ng-container *ngIf = 'keyValuePair.key == "restext" && data.resCode == 200'>
+                Message
+              </ng-container>
+              <ng-container *ngIf = 'keyValuePair.key == "restext" && data.resCode !== 200'>
+                Reason
+              </ng-container>
+              <ng-container *ngIf = 'keyValuePair.key == "status"'>
+                Status
+              </ng-container>
+              <ng-container *ngIf = 'keyValuePair.key == "resCode"'>
+                Activity Code
+              </ng-container>
+              <ng-container *ngIf = 'keyValuePair.key !== "status" && keyValuePair.key !== "restext" && keyValuePair.key !== "resCode" '>
+                {{ keyValuePair.key }}
+              </ng-container>
+
+            </div>
+            <div class="item-2">{{ keyValuePair.value }}</div>
+          </ng-container>
+        </div>
+      </ng-container>
+    </mat-tab>
+</mat-tab-group>
