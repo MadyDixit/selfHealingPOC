@@ -16,14 +16,14 @@ export class OperationService {
   operationAction(incidentDetais: any) {
     console.log(incidentDetais);
 
-    if (incidentDetais[0]["RCA_Group"] == 'SQL Operation') {
+    if (incidentDetais[0]["RCA_Group"] == 'enhancement') {
       const data = ''
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
       });
       const res: Observable<any> = this.http.post(this.sqlOperationURL, data, { headers })
       return res;
-    } else if (incidentDetais[0]["RCA_Group"] == 'ADF Operation' && incidentDetais[0]["Description"].includes('self-healed-Trigger')) {
+    } else if (incidentDetais[0]["RCA_Group"] == 'data load failure' && incidentDetais[0]["RCA_Group"] == 'trigger disabled' && incidentDetais[0]["Description"].includes('self-healed-Trigger')) {
       const data = ''
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export class OperationService {
       const res: Observable<any> = this.http.post(this.adfOperationTrigger, data, { headers })
       console.log(res);
       return res.pipe(catchError(this.handleError));
-    } else if (incidentDetais[0]["RCA_Group"] == 'ADF Operation' && incidentDetais[0]["Description"].includes('self-healing-poc')) {
+    } else if (incidentDetais[0]["RCA_Group"] == 'trigger disabled' && incidentDetais[0]["RCA_Group"] == 'data load failure' && incidentDetais[0]["Description"].includes('self-healing-poc')) {
       const data = ''
       const headers = new HttpHeaders({
         'Content-Type': 'application/json'
