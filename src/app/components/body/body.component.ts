@@ -30,7 +30,7 @@ export class BodyComponent implements OnInit {
     // Example: List blobs and monitor changes
     setInterval(() => {
       this.fetchJsonData().then(blobs => {
-        console.log('Blobs:', blobs);
+        // console.log('Blobs:', blobs);
         // Compare with previous state or take appropriate action
       }).catch(err => {
         console.error('Error listing blobs:', err);
@@ -64,7 +64,7 @@ export class BodyComponent implements OnInit {
             this.incidentDetails.push(this.data[i]);
           }
         }
-        console.log(this.incidentDetails);
+        // console.log(this.incidentDetails);
         this.dataSources.data = this.incidentDetails;
 
         this.cdr.detectChanges()
@@ -101,6 +101,9 @@ export class BodyComponent implements OnInit {
       }
       return obj;
     });
+    console.log(
+      this.incidentDetails
+    );
     this.dataSources.data = this.incidentDetails
     this.cdr.detectChanges()
     const incidentDetail = this.incidentDetails.filter((e: any) => e.Number == incidentNumber)

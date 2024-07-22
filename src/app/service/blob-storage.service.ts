@@ -28,7 +28,7 @@ export class BlobStorageService {
     // if (this.incidentDetails == '') {
 
     const blobClient = this.containerClient.getBlobClient(blobName);
-    console.log(blobClient);
+    // console.log(blobClient);
 
     try {
       // Download blob content
