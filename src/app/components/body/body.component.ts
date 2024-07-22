@@ -52,7 +52,7 @@ export class BodyComponent implements OnInit {
         this.data = this.data.map((obj: any) => ({ ...obj, 'resCode': '0' }));
         this.data = this.data.map((obj: any) => ({ ...obj, 'actionTaken': 'false' }));
         this.data = this.data.map((obj: any) => ({ ...obj, 'shortMessage': '' }));
-        this.displayedColumns = ['SrNo', 'RCA_TimeStamp', 'Number', 'Description', 'RCA_Group', 'Status'];
+        this.displayedColumns = ['SrNo', 'RCA_TimeStamp', 'Number', 'Short description', 'RCA_Group', 'Status'];
         for (let i = 0; i < this.data.length; i++) {
           var found = this.incidentDetails.filter((o) => o.Number == this.data[i].Number);
           // console.log(found);
