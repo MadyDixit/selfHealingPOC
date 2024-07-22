@@ -15,7 +15,7 @@ export class BlobStorageService {
 
   constructor() {
     // Replace with your SAS token for the container or blob
-    const sasToken = "sv=2022-11-02&ss=bfqt&srt=sc&sp=rwdlacupiytfx&se=2024-08-31T02:33:22Z&st=2024-07-22T18:33:22Z&spr=https,http&sig=gEduBQmWLUihReVql0vEt%2FOHVWLOG9nPGIPBrHDTKUs%3D";
+    const sasToken = "sv=2022-11-02&ss=bfqt&srt=sco&sp=rwdlacupiytfx&se=2024-08-31T02:33:22Z&st=2024-07-22T18:33:22Z&spr=https,http&sig=ZJSBrgcfBEXq7K8hjYvDrrwLLid0zwwoyJttN3qIUys%3D";
     const blobServiceClient = new BlobServiceClient(
       `https://${this.accountName}.blob.core.windows.net?${sasToken}`
     );
