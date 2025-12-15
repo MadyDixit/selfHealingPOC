@@ -43,7 +43,6 @@
           <th class="textcenter" mat-header-cell *matHeaderCellDef>Category</th>
           <td class="textcenter" mat-cell *matCellDef="let element">{{element["RCA_Group"]}}</td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

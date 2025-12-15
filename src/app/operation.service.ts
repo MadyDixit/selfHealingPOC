@@ -9,8 +9,8 @@ export class OperationService {
 
   constructor(private http: HttpClient) { }
 
-  private adfOperationTrigger = 'https://func-fabric-dev.azurewebsites.net/api/ADF_Trigger_Operation?code=Tr8CGe0fxWYwTMvAkD7Wn4MHXo1ovRAWY85OML19-MDoAzFuf8_lPg%3D%3D'
-  private adfOperationPipelineRun = 'https://func-fabric-dev.azurewebsites.net/api/func-ADF-Operation?code=Tr8CGe0fxWYwTMvAkD7Wn4MHXo1ovRAWY85OML19-MDoAzFuf8_lPg%3D%3D'
+  private adfOperationTrigger = 'https://func-self-healing-adf.azurewebsites.net/api/ADF_Trigger_Operation?code=YBQ_7zY1bX_dSowPgBQWr2LCX149ZS__-ATkH-gue4cOAzFuHiU-Cw=='
+  private adfOperationPipelineRun = 'https://func-self-healing-adf.azurewebsites.net/api/func-ADF-Operation?code=YBQ_7zY1bX_dSowPgBQWr2LCX149ZS__-ATkH-gue4cOAzFuHiU-Cw=='
   private sqlOperationURL = 'https://func-self-healing-adf.azurewebsites.net/api/SQLOperation?code=YBQ_7zY1bX_dSowPgBQWr2LCX149ZS__-ATkH-gue4cOAzFuHiU-Cw%3D%3D'
   private notificationURL = 'https://prod-18.northcentralus.logic.azure.com:443/workflows/ae12b3b869f3409588289ec02bb877f1/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=G9oJL9u8jsd1TmK6IS7xN49oVvlklFHgco6O2vyj-58'
   operationAction(incidentDetais: any) {
