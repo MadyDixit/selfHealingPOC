@@ -10,7 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class DialogComponent {
   public incidentDetails = ['Description', 'Due date', 'Number', 'Opened', 'Prospective Resolutions', 'RCA_Group', 'RCA_TimeStamp', 'Similar_IDs', 'Self_Healing_Action']
   public activityDetails = ['restext', 'resCode', 'Number', 'User Email', 'Notified', 'Notification Time', 'Self_Healing_Action']
-
+  raw: any = {}
   // 🔹 Middleware table
   displayedMiddlewareColumns: string[] = [
     'step_no',
@@ -36,12 +36,21 @@ export class DialogComponent {
     try {
       // Case 1: Already object (API / non-CSV)
       if (typeof rawLogs === 'object' && rawLogs.steps) {
+        this.raw = rawLogs;
         this.middlewareDataSource.data = rawLogs.steps;
       }
 
       // Case 2: CSV string → parse JSON
       if (typeof rawLogs === 'string') {
-        const parsed = JSON.parse(rawLogs.replace(/'/g, '"'));
+        const normalized = rawLogs
+          .replace(/'/g, '"')
+          .replace(/\bNone\b/g, 'null')
+          .replace(/\bTrue\b/g, 'true')
+          .replace(/\bFalse\b/g, 'false');
+
+        const parsed = JSON.parse(normalized);
+
+        this.raw = parsed;
         this.middlewareDataSource.data = parsed.steps || [];
       }
 
@@ -58,6 +67,10 @@ export class DialogComponent {
     return this.activityDetails.indexOf(key) != -1
   }
   hasMiddlewareLogs(): boolean {
-    return this.middlewareDataSource.data.length > 0;
+    return (
+      this.data?.Self_Healing_Action === 'Completed' &&
+      Array.isArray(this.middlewareDataSource.data) &&
+      this.middlewareDataSource.data.length > 0
+    );
   }
 }
